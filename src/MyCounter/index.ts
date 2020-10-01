@@ -5,31 +5,30 @@ import { css, Definition, EventOptions } from 'uce';
  * `<my-counter></my-counter>`
  * `<my-counter count="10"></my-counter>`
  */
-type TAttributes = {
+type Props = {
   count?: number;
 };
 
 /**
  * Internal state and functions.
  */
-type TOwnProps = {
+type OwnProps = {
   count: number;
   inc: () => unknown;
   dec: () => unknown;
 };
 
 /**
- * Extensions to the `definition` object.
+ * Added Definition accessors.
  */
-interface IMyCounter extends Definition<TAttributes, TOwnProps> {
+interface MyCounter extends Definition<Props, OwnProps> {
   onClick: (event: Event) => void;
   onClickOptions: EventOptions;
   test: number; // some getter/setter
   method: () => string; // some method
 }
 
-export const MyCounter: IMyCounter = {
-  // attachShadow: { mode: 'open' },
+export const MyCounter: MyCounter = {
   init: function () {
     this.count = this.props.count !== undefined ? this.props.count : 0;
     this.dec = () => {
@@ -70,6 +69,14 @@ export const MyCounter: IMyCounter = {
       }
     `;
   },
+  render: function () {
+    this.html`
+      <button onclick="${this.dec}">-</button>
+      <span>${this.count}</span>
+      <button onclick="${this.inc}">+</button>
+    `;
+  },
+  // Added Definition accessors:
   onClick: (evt: Event) => console.log(evt),
   onClickOptions: { once: true },
   get test() {
@@ -79,11 +86,4 @@ export const MyCounter: IMyCounter = {
     console.log(value);
   },
   method: () => 'some data',
-  render: function () {
-    this.html`
-      <button onclick="${this.dec}">-</button>
-      <span>${this.count}</span>
-      <button onclick="${this.inc}">+</button>
-    `;
-  },
 };

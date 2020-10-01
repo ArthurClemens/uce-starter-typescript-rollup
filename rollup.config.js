@@ -29,17 +29,6 @@ export default {
   },
 
   plugins: [
-    !isProduction &&
-      serve({
-        contentBase: [OUTPUT_DIR],
-        port: DEV_PORT,
-      }),
-
-    !isProduction &&
-      livereload({
-        watch: [INPUT_DIR, OUTPUT_DIR],
-      }),
-
     nodeResolve(),
     commonjs(),
     typescript(),
@@ -59,7 +48,19 @@ export default {
       ],
     }),
 
+    !isProduction &&
+      serve({
+        contentBase: [OUTPUT_DIR],
+        port: DEV_PORT,
+      }),
+
+    !isProduction &&
+      livereload({
+        watch: [INPUT_DIR, OUTPUT_DIR],
+      }),
+
     isProduction && terser(),
+
     isProduction && sizeSnapshot(),
   ].filter(Boolean),
 

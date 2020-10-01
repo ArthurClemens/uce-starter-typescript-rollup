@@ -1,64 +1,67 @@
 type Tag = import('uhtml').Tag;
 
+declare function render<T extends Node>(
+  node: T,
+  renderer: (() => Renderable) | Renderable,
+): T;
+
 declare module 'uce' {
-  type EventOptions = { once: true } | boolean;
-
-  type TStyle = (selector: string) => unknown;
-  type TInit = (this: { props: T } & U & ProvidedDefinition<T, U>) => unknown; // "this": https://medium.com/better-programming/introduction-to-typescript-functions-this-object-and-overloads-6d03a90f1821
-  type TRender = (this: U & ProvidedDefinition<T, U>) => unknown;
-  type TCss = (strings: TemplateStringsArray, ...expr: unknown[]) => unknown;
-  type TBound = string[];
-  type TObservedAttributes = string[];
-  type TExtends = string;
-  type TAttributeChanged = (
-    name: string,
-    oldValue: unknown,
-    newValue: unknown,
+  // T: Attributes passed to the component.
+  // U: Internal state and functions.
+  type HTML = Tag<HTMLElement>;
+  type SVG = Tag<SVGElement>;
+  type CSS = (strings: TemplateStringsArray, ...values: unknown[]) => string;
+  type Render<T, U> = (
+    this: T & U & { html: HTML; render: Render<T, U> },
   ) => unknown;
-  type THtml = (strings: TemplateStringsArray, ...expr: unknown[]) => unknown;
-  type TAttachShadow = { mode: 'closed' | 'open' };
-
-  /**
-   * Uce provided definition.
-   */
-  interface ProvidedDefinition<T, U> {
-    extends: TExtends;
-    style: TStyle;
-    init: TInit;
-    render: TRender;
-    bound: TBound;
-    attachShadow: TAttachShadow;
-    observedAttributes: TObservedAttributes;
-    attributeChanged: TAttributeChanged;
-    connected: () => void;
-    disconnected: () => void;
-    html: Tag<HTMLElement>;
-  }
+  type EventOptions = { once: true } | boolean;
 
   /**
    * User provided definition: all entries are optional.
    */
-  interface Definition<T, U> {
-    extends?: TExtends;
-    style?: TStyle;
-    init?: TInit;
-    render?: TRender;
-    bound?: TBound;
-    observedAttributes?: TObservedAttributes;
-    attributeChanged?: TAttributeChanged;
+  interface Definition<T = void, U = void> {
+    extends?: string;
+    style?: (selector: string) => string;
+    init?: (
+      this: { props: T } & U & { html: HTML; render: Render<T, U> },
+    ) => unknown;
+    render?: Render<T, U>;
+    props?: T;
+    bound?: string[];
+    observedAttributes?: string[];
+    attributeChanged?: (
+      name: string,
+      oldValue: unknown,
+      newValue: unknown,
+    ) => unknown;
     connected?: () => void;
     disconnected?: () => void;
-    attachShadow?: TAttachShadow;
-    html?: Tag<HTMLElement>;
+    attachShadow?: { mode: 'closed' | 'open' };
+
+    // Sort out:
+    // sharedData: unknown
+
+    // Additional options that cannot be typed and need to be written in the component's interface extend,
+    // for example:
+    // onClick?: (event) => unknown; // events
+    // onClickOptions?: EventOptions; // event listener settings
+    // test?: unknown; // variables to access by getter/setter function: get test() and set test(value)
+    // method?: (args?: unknown) => unknown;
   }
 
-  interface Uce<T, U> extends Definition<T, U> {
-    css: TCss;
-    define(tagName, definition: Definition<T, U>): unknown;
+  interface Uce {
+    css: CSS;
+    html: HTML;
+    svg: SVG;
+    define<T, U>(tagName: string, definition: Definition<T, U>): unknown;
+    render<T extends Node>(
+      node: T,
+      renderer: (() => Renderable) | Renderable,
+    ): T;
   }
 }
 
-declare var uce: uce.Uce<unknown, unknown>;
+declare var uce: uce.Uce;
 
 declare module 'uce' {
   export = uce;
