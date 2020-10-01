@@ -20,8 +20,21 @@ declare module 'uce' {
    * User provided definition: all entries are optional.
    */
   interface Definition<T = void, U = void> {
+    /**
+     * Element to extend.
+     * Default: 'element' as HTMLElement.
+     */
     extends?: string;
+
+    /**
+     * Injects a `<style>` element in the document `<head>`, once per class definition.
+     */
     style?: (selector: string) => string;
+
+    /**
+     * like the constructor but granted to be invoked *only once* on bootstrap
+     * and *always* before connected/attributeChanged/props.
+     */
     init?: (
       this: { props: T } & U & { html: HTML; render: Render<T, U> },
     ) => unknown;
@@ -37,9 +50,6 @@ declare module 'uce' {
     connected?: () => void;
     disconnected?: () => void;
     attachShadow?: { mode: 'closed' | 'open' };
-
-    // Sort out:
-    // sharedData: unknown
 
     // Additional options that cannot be typed and need to be written in the component's interface extend,
     // for example:
