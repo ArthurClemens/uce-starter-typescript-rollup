@@ -21,14 +21,14 @@ type OwnProps = {
 /**
  * Added Definition accessors.
  */
-interface MyCounter extends Definition<Props, OwnProps> {
+interface IMyCounter extends Definition<Props, OwnProps> {
   onClick: (event: Event) => void;
   onClickOptions: EventOptions;
   test: number; // some getter/setter
   method: () => string; // some method
 }
 
-export const MyCounter: MyCounter = {
+export const MyCounter: IMyCounter = {
   init: function () {
     this.count = this.props.count !== undefined ? this.props.count : 0;
     this.dec = () => {
