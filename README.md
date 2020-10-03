@@ -9,6 +9,14 @@
 * Includes polyfills to support older browsers
 * Tested on Internet Explorer 11
 
+
+## Demos
+
+Live examples on CodeSandbox (bundled by Parcel):
+
+*  [µce with Mithril](https://codesandbox.io/s/uce-with-mithril-and-typescript-4lhbk)
+
+
 ## Setup
 
 The example component is a simple (and slightly modified) counter that is used on [webcomponents.dev](https://webcomponents.dev/blog/all-the-ways-to-make-a-web-component/) to compare Web Component libraries.
