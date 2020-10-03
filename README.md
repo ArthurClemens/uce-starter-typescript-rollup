@@ -5,7 +5,6 @@
 ## Features 
 
 * Written in TypeScript
-  * Contains a proposal for typings for the `define` function
 * Bundled by [Rollup](https://rollupjs.org/)
 * Includes polyfills to support older browsers
 * Tested on Internet Explorer 11
