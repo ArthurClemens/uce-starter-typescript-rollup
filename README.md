@@ -2,6 +2,13 @@
 
 [µce](https://github.com/WebReflection/uce) is a tiny helper library to create Custom Elements. This starter kit helps to set up a project using µce together with TypeScript.
 
+- [Features](#features)
+- [Examples](#examples)
+- [Use with SPA libraries](#use-with-spa-libraries)
+- [Repo setup](#repo-setup)
+- [Run and build](#run-and-build)
+- [See also](#see-also)
+
 ## Features 
 
 * Written in TypeScript
@@ -10,11 +17,18 @@
 * Tested on Internet Explorer 11
 
 
+## Examples
+
+Live examples on CodeSandbox (which is using Parcel instead of Rollup).
+
+*  [µce with React](https://codesandbox.io/s/uce-with-react-and-typescript-45sbf)
+*  [µce with Mithril](https://codesandbox.io/s/uce-with-mithril-and-typescript-4lhbk)
+
+
+
 ## Use with SPA libraries
 
-Because Custom Elements can be used directly as HTML elements, the typing in the µce definition object gets lost.
-
-It would be valid to use a component prop that isn't specified:
+Using Custom Elements as HTML elements, the typing in the µce definition object would get lost. For example, it would be valid to use a component prop that isn't specified:
 
 ```tsx
 <my-counter counter={99}></my-counter>
@@ -23,6 +37,7 @@ It would be valid to use a component prop that isn't specified:
 When using a SPA library like React or Mithril, you can preserve typing by using a thin wrapper around the Custom Element:
 
 ```tsx
+// Import the uce definition plus its types
 import {
   MyCounter as MyCounterCE,
   MyCounterProps
@@ -32,18 +47,27 @@ import {
 // <my-counter></my-counter>
 define("my-counter", MyCounterCE);
 
+// Export as SPA component
+
+// React example:
 export const MyCounter = (props: MyCounterProps) => (
   <my-counter {...props}></my-counter>
 );
+
+// Mithril example:
+export const MyCounter: m.Component<MyCounterProps> = {
+  view: (vnode) => m("my-counter", vnode.attrs)
+};
 ```
 
-Now the CE can be used as a typed component:
+
+Now the wrapped Custom Element can be used as a typed component:
 
 ```tsx
 <MyCounter counter={99} />
 ```
 
-This would generate the error:
+Which will generate a type error:
 
 ```
 Type '{ counter: number; }' is not assignable to type 'IntrinsicAttributes & MyCounterProps'.
@@ -56,16 +80,8 @@ Correct use:
 <MyCounter count={99} />
 ```
 
-## Examples
 
-Live examples on CodeSandbox (which is using Parcel instead of Rollup).
-
-
-*  [µce with React](https://codesandbox.io/s/uce-with-react-and-typescript-45sbf)
-*  [µce with Mithril](https://codesandbox.io/s/uce-with-mithril-and-typescript-4lhbk)
-
-
-## Setup
+## Repo setup
 
 The example component is a simple (and slightly modified) counter that is used on [webcomponents.dev](https://webcomponents.dev/blog/all-the-ways-to-make-a-web-component/) to compare Web Component libraries.
 
@@ -78,3 +94,9 @@ The example component is a simple (and slightly modified) counter that is used o
 * `npm run dev` - runs the dev server on port `3000`
 * `npm run build` - creates `bundle.js` in `dist`
 * `npm run serve` - runs a server on `dist`
+
+
+## See also
+
+* [uce-svelte-typescript](https://github.com/ArthurClemens/uce-svelte-typescript)
+* [µce](https://github.com/WebReflection/uce)
