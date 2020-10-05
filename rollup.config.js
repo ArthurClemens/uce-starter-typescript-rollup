@@ -1,7 +1,7 @@
 import commonjs from '@rollup/plugin-commonjs';
 import babel from 'rollup-plugin-babel';
 import livereload from 'rollup-plugin-livereload';
-import nodeResolve from 'rollup-plugin-node-resolve';
+import resolve from 'rollup-plugin-node-resolve';
 import serve from 'rollup-plugin-serve';
 import { sizeSnapshot } from 'rollup-plugin-size-snapshot';
 import { terser } from 'rollup-plugin-terser';
@@ -29,7 +29,7 @@ export default {
   },
 
   plugins: [
-    nodeResolve(),
+    resolve(),
     commonjs(),
     typescript(),
 
