@@ -39,6 +39,7 @@ export const MyCounter: IMyCounter = {
       this.count++;
       this.render();
     };
+    this.classList.add('my-prefix');
     this.render();
   },
   style: (selector: string) => {
