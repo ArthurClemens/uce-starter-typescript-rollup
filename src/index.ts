@@ -1,4 +1,4 @@
 import { define } from 'uce';
-import { MyCounter } from './MyCounter';
+import { MyCounter, TAG_NAME } from './MyCounter';
 
-define('my-counter', MyCounter);
+define(TAG_NAME, MyCounter);

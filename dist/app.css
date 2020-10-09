@@ -1,0 +1,36 @@
+:root {
+  --size: 64px;
+}
+my-counter {
+  display: block;
+  margin: 10px;
+  font-weight: bold;
+  font-size: calc(64px / 2);
+  font-size: calc(64px / 2);
+  font-size: calc(var(--size) / 2);
+}
+my-counter span {
+    width: 2em;
+    display: inline-block;
+    text-align: center;
+  }
+my-counter button {
+    width: 64px;
+    width: 64px;
+    width: var(--size);
+    height: 64px;
+    height: 64px;
+    height: var(--size);
+    line-height: calc(64px - 10px);
+    line-height: calc(64px - 10px);
+    line-height: calc(var(--size) - 10px);
+    border: none;
+    padding: 0;
+    display: inline-block;
+    border-radius: 10px;
+    background-color: seagreen;
+    color: white;
+    font-size: inherit;
+  }
+
+/*# sourceMappingURL=app.css.map */

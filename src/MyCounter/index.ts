@@ -1,4 +1,7 @@
-import { css, Definition, EventOptions } from 'uce';
+import { Definition, EventOptions } from 'uce';
+// import './styles.css';
+
+export const TAG_NAME = 'my-counter';
 
 /**
  * Attributes passed to the component:
@@ -41,34 +44,6 @@ export const MyCounter: IMyCounter = {
     };
     this.classList.add('my-prefix');
     this.render();
-  },
-  style: (selector: string) => {
-    const size = '64px';
-    return css`
-      ${selector} {
-        display: block;
-        margin: 10px;
-        font-weight: bold;
-        font-size: calc(${size} / 2);
-      }
-      ${selector} span {
-        width: 2em;
-        display: inline-block;
-        text-align: center;
-      }
-      ${selector} button {
-        width: ${size};
-        height: ${size};
-        line-height: calc(${size} - 10px);
-        border: none;
-        padding: 0;
-        display: inline-block;
-        border-radius: 10px;
-        background-color: seagreen;
-        color: white;
-        font-size: inherit;
-      }
-    `;
   },
   render: function () {
     this.html`
