@@ -14,16 +14,6 @@ import { sizeSnapshot } from 'rollup-plugin-size-snapshot';
 import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
 
-/*
-Note that these libraries are pinned until https://github.com/egoist/rollup-plugin-postcss/pull/325 has been merged into rollup-plugin-postcss
-
-postcss
-postcss-cli
-postcss-import
-postcss-mixins
-postcss-nested
-*/
-
 const NAME = 'testUce'; // for umd
 
 const { NODE_ENV = 'development' } = process.env;

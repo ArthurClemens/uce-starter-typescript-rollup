@@ -2,17 +2,19 @@
 
 [µce](https://github.com/WebReflection/uce) is a tiny helper library to create Custom Elements. This starter kit helps to set up a project using µce together with TypeScript.
 
-- [Features](#features)
-- [Examples](#examples)
-- [Use with SPA libraries](#use-with-spa-libraries)
-- [Repo setup](#repo-setup)
-- [Run and build](#run-and-build)
-- [See also](#see-also)
+- [µce starter with TypeScript and Rollup](#µce-starter-with-typescript-and-rollup)
+  - [Features](#features)
+  - [Examples](#examples)
+  - [Use with SPA libraries](#use-with-spa-libraries)
+  - [Repo setup](#repo-setup)
+  - [Run and build](#run-and-build)
+  - [See also](#see-also)
 
 ## Features 
 
 * Written in TypeScript
 * Bundled by [Rollup](https://rollupjs.org/)
+* Optionally use PostCSS for styling
 * Includes polyfills to support older browsers
 * Tested on Internet Explorer 11
 
@@ -67,7 +69,7 @@ Now the wrapped Custom Element can be used as a typed component:
 <MyCounter counter={99} />
 ```
 
-Which will generate a type error:
+Which will generate a type error - as expected:
 
 ```
 Type '{ counter: number; }' is not assignable to type 'IntrinsicAttributes & MyCounterProps'.

@@ -1,12 +1,12 @@
 import { Definition, EventOptions } from 'uce';
-// import './styles.css';
+import './MyCounterPostCSS.css';
 
-export const TAG_NAME = 'my-counter';
+export const tagName = 'my-counter-postcss';
 
 /**
  * Attributes passed to the component:
- * `<my-counter></my-counter>`
- * `<my-counter count="10"></my-counter>`
+ * `<my-counter-postcss></my-counter-postcss>`
+ * `<my-counter-postcss count="10"></my-counter-postcss>`
  */
 type Props = {
   count?: number;

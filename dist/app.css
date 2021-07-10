@@ -1,34 +1,40 @@
+/*
+Custom properties need to be defined at root-level for IE 11.
+For newer browsers these vars may be defined inside the element.
+*/
+
 :root {
-  --size: 64px;
+  --button-size: 64px;
+  --button-background-color: seagreen;
 }
-my-counter {
+
+my-counter-postcss {
   display: block;
   margin: 10px;
   font-weight: bold;
   font-size: calc(64px / 2);
-  font-size: calc(64px / 2);
-  font-size: calc(var(--size) / 2);
+  font-size: calc(var(--button-size) / 2);
 }
-my-counter span {
+
+my-counter-postcss span {
     width: 2em;
     display: inline-block;
     text-align: center;
   }
-my-counter button {
+
+my-counter-postcss button {
     width: 64px;
-    width: 64px;
-    width: var(--size);
+    width: var(--button-size);
     height: 64px;
-    height: 64px;
-    height: var(--size);
+    height: var(--button-size);
     line-height: calc(64px - 10px);
-    line-height: calc(64px - 10px);
-    line-height: calc(var(--size) - 10px);
+    line-height: calc(var(--button-size) - 10px);
     border: none;
     padding: 0;
     display: inline-block;
     border-radius: 10px;
     background-color: seagreen;
+    background-color: var(--button-background-color, grey);
     color: white;
     font-size: inherit;
   }

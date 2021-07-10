@@ -1,4 +1,7 @@
 import { define } from 'uce';
-import { MyCounter, TAG_NAME } from './MyCounter';
+import { MyCounter, tagName } from './MyCounter/MyCounter';
+import { MyCounter as MyCounterPostCSS, tagName as myCounterPostCSSTagName } from './MyCounterPostCSS/MyCounterPostCSS';
 
-define(TAG_NAME, MyCounter);
+define(tagName, MyCounter);
+define(myCounterPostCSSTagName, MyCounterPostCSS);
+
