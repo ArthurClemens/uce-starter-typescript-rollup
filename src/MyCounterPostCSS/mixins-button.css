@@ -1,0 +1,14 @@
+@import './root.css';
+
+@define-mixin button {
+  width: var(--button-size);
+  height: var(--button-size);
+  line-height: calc(var(--button-size) - 10px);
+  border: none;
+  padding: 0;
+  display: inline-block;
+  border-radius: 10px;
+  background-color: var(--button-background-color, grey);
+  color: white;
+  font-size: inherit;
+}

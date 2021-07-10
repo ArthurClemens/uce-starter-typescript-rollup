@@ -10,12 +10,17 @@
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta http-equiv="cleartype" content="on" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="global.css" />
+    <link rel="stylesheet" href="app.css" />
     <script src="polyfills.js"></script>
   </head>
   <body>
+    <p>With inline CSS</p>
     <my-counter></my-counter>
     <my-counter count="99" class="has-initial-count"></my-counter>
+    <p>With PostCSS</p>
+    <my-counter-postcss></my-counter-postcss>
+    <my-counter-postcss count="99" class="has-initial-count"></my-counter-postcss>
     <script src="bundle.js" defer></script>
   </body>
 </html>

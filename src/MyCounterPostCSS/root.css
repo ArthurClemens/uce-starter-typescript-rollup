@@ -1,0 +1,9 @@
+/*
+Custom properties need to be defined at root-level for IE 11.
+For newer browsers these vars may be defined inside the element.
+*/
+
+:root {
+  --button-size: 64px;
+  --button-background-color: seagreen;
+}
