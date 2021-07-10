@@ -1,6 +1,4 @@
-import { css, Definition, EventOptions } from 'uce';
-
-export const tagName = 'my-counter';
+import { css, define, Definition, EventOptions } from 'uce';
 
 /**
  * Attributes passed to the component:
@@ -90,3 +88,5 @@ export const MyCounter: IMyCounter = {
   },
   method: () => 'some data',
 };
+
+define('my-counter', MyCounter);

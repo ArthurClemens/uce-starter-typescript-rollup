@@ -1,7 +1,5 @@
-import { Definition, EventOptions } from 'uce';
-import './MyCounterPostCSS.css';
-
-export const tagName = 'my-counter-postcss';
+import { define, Definition, EventOptions } from 'uce';
+import './styles.css';
 
 /**
  * Attributes passed to the component:
@@ -63,3 +61,5 @@ export const MyCounter: IMyCounter = {
   },
   method: () => 'some data',
 };
+
+define('my-counter-postcss', MyCounter);

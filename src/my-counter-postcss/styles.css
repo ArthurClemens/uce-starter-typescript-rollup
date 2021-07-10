@@ -1,0 +1,21 @@
+@import './mixins-button.css';
+
+my-counter-postcss {
+  --button-size: 64px;
+  --button-background-color: seagreen;
+
+  display: block;
+  margin: 10px;
+  font-weight: bold;
+  font-size: calc(var(--button-size) / 2);
+
+  span {
+    width: 2em;
+    display: inline-block;
+    text-align: center;
+  }
+
+  button {
+    @mixin button;
+  }
+}
