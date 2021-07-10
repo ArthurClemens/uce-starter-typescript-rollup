@@ -6,7 +6,7 @@ import { css, define, Definition, EventOptions } from 'uce';
  * `<my-counter count="10"></my-counter>`
  */
 type Props = {
-  count?: number;
+  count?: string;
 };
 
 /**
@@ -30,7 +30,7 @@ interface IMyCounter extends Definition<Props, OwnProps> {
 
 export const MyCounter: IMyCounter = {
   init: function () {
-    this.count = this.props.count !== undefined ? this.props.count : 0;
+    this.count = this.props.count !== undefined ? parseInt(this.props.count, 10) : 0;
     this.dec = () => {
       this.count--;
       this.render();
