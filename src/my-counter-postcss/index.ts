@@ -2,6 +2,12 @@ import { define, Definition, EventOptions } from 'uce';
 import './styles.css';
 
 /**
+ * Variation of the simple Counter component example.
+ * The styling is set by postcss-enabled CSS.
+ * This version does not work well in IE 11 - see my-counter-postcss-ie11 for supporting that browser.
+ */
+
+/**
  * Attributes passed to the component:
  * `<my-counter-postcss></my-counter-postcss>`
  * `<my-counter-postcss count="10"></my-counter-postcss>`

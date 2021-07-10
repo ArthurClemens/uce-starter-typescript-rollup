@@ -1,6 +1,11 @@
 import { css, define, Definition, EventOptions } from 'uce';
 
 /**
+ * Simple Counter component example.
+ * The styling is set by the `style` function.
+ */
+
+/**
  * Attributes passed to the component:
  * `<my-counter></my-counter>`
  * `<my-counter count="10"></my-counter>`

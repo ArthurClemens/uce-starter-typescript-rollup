@@ -2,6 +2,11 @@ import { define, Definition, EventOptions } from 'uce';
 import './styles.css';
 
 /**
+ * Variation of the simple Counter component example.
+ * The styling is set by postcss-enabled CSS, using root level CSS variables.
+ */
+
+/**
  * Attributes passed to the component:
  * `<my-counter-postcss></my-counter-postcss>`
  * `<my-counter-postcss count="10"></my-counter-postcss>`
