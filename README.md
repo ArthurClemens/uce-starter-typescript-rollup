@@ -6,6 +6,8 @@
   - [Features](#features)
   - [Examples](#examples)
   - [Use with SPA libraries](#use-with-spa-libraries)
+    - [React](#react)
+    - [Mithril](#mithril)
   - [Repo setup](#repo-setup)
   - [Run and build](#run-and-build)
   - [See also](#see-also)
@@ -30,56 +32,85 @@ Live examples on CodeSandbox (which is using Parcel instead of Rollup).
 
 ## Use with SPA libraries
 
-Using Custom Elements as HTML elements, the typing in the µce definition object would get lost. For example, it would be valid to use a component prop that isn't specified:
+### React 
+
+Typed Custom Elements can simply be used in a React project. For example:
 
 ```tsx
-<my-counter counter={99}></my-counter>
+import React from "react";
+// Import the uce Custom Element (which activates it with tag "my-counter")
+import  "./my-counter";
+
+export const App = () => {
+  return (
+    <>
+      <my-counter />
+      <my-counter count="99" />
+    </>
+  );
+};
 ```
 
-When using a SPA library like React or Mithril, you can preserve typing by using a thin wrapper around the Custom Element:
+In order to preserve typing, "my-counter" is listed in globals.d.ts (which is included in tsconfig.json). This also solves the TS error "Property 'my-counter' does not exist on type 'JSX.IntrinsicElements'" (raised because React JSX elements must be written in  PascalCase).
 
-```tsx
-// Import the uce definition plus its types
-import {
-  MyCounter as MyCounterCE,
-  MyCounterProps
-} from "../uceElements/MyCounter";
+To include "my-counter" to the accepted tags (and to add the types), take these steps:
 
-// Create the Custom Element so that we can use
-// <my-counter></my-counter>
-define("my-counter", MyCounterCE);
+1. Create a type definition file `globals.d.ts` in the root of your project:
 
-// Export as SPA component
+```ts
+// globals.d.ts
+import type { MyCounterProps } from "./src/my-counter";
 
-// React example:
-export const MyCounter = (props: MyCounterProps) => (
-  <my-counter {...props}></my-counter>
-);
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'my-counter': MyCounterProps;
+    }
+  }
+}
+```
 
-// Mithril example:
+2. Include the type definition file in `tsconfig.json`:
+
+```json
+{
+  "include": [
+    "./src/*",
+    "./globals.d.ts"
+  ],
+  "compilerOptions": {}
+}
+```
+
+### Mithril
+
+For Mithril, you can preserve typing by using a thin wrapper around the Custom Element:
+
+```ts
+import m from "mithril";
+import { MyCounterProps } from "./my-counter";
+// Import the uce Custom Element (which activates it with tag "my-counter")
+import "./my-counter";
+
 export const MyCounter: m.Component<MyCounterProps> = {
   view: (vnode) => m("my-counter", vnode.attrs)
 };
 ```
 
+and then use the wrapper component:
 
-Now the wrapped Custom Element can be used as a typed component:
+```ts
+import m from "mithril";
+import { MyCounter } from "./MyCounter";
 
-```tsx
-<MyCounter counter={99} />
-```
-
-Which will generate a type error - as expected:
-
-```
-Type '{ counter: number; }' is not assignable to type 'IntrinsicAttributes & MyCounterProps'.
-Property 'counter' does not exist on type 'IntrinsicAttributes & MyCounterProps'. Did you mean 'count'? ts(2322)
-```
-
-Correct use:
-
-```tsx
-<MyCounter count={99} />
+export const App = {
+  view: () => {
+    return [
+      m(MyCounter),
+      m(MyCounter, { count: "99" })
+    ];
+  }
+};
 ```
 
 
