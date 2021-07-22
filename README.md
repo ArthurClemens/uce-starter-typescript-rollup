@@ -84,7 +84,7 @@ declare global {
 
 ### Mithril
 
-For Mithril, you can preserve typing by using a thin wrapper around the Custom Element:
+For Mithril, you can preserve typing by using a thin wrapper component around the Custom Element:
 
 ```ts
 import m from "mithril";
@@ -113,6 +113,25 @@ export const App = {
 };
 ```
 
+Alternatively, use a wrapper function:
+
+```ts
+const customElement =
+  <Attrs>(tag: string) =>
+  (attrs?: Attrs) =>
+    m(tag, attrs);
+
+const myCounter = customElement<MyCounterProps>("my-counter");
+
+export const App = {
+  view: () => {
+    return [
+      myCounter(),
+      myCounter({ count: "12" }),
+    ];
+  },
+};
+```
 
 ## Repo setup
 
