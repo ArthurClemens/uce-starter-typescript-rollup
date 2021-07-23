@@ -1,4 +1,4 @@
-import { define, Definition, EventOptions } from 'uce';
+import { define, Definition } from 'uce';
 import './styles.css';
 
 /**
@@ -29,14 +29,12 @@ type OwnProps = {
  */
 interface IMyCounter extends Definition<Props, OwnProps> {
   onClick: (event: Event) => void;
-  onClickOptions: EventOptions;
-  test: number; // some getter/setter
-  method: () => string; // some method
 }
 
 export const MyCounter: IMyCounter = {
   init: function () {
-    this.count = this.props.count !== undefined ? parseInt(this.props.count, 10) : 0;
+    this.count =
+      this.props.count !== undefined ? parseInt(this.props.count, 10) : 0;
     this.dec = () => {
       this.count--;
       this.render();
@@ -57,14 +55,6 @@ export const MyCounter: IMyCounter = {
   },
   // Added Definition accessors:
   onClick: (evt: Event) => console.log(evt),
-  onClickOptions: { once: true },
-  get test() {
-    return Math.random();
-  },
-  set test(value: number) {
-    console.log(value);
-  },
-  method: () => 'some data',
 };
 
 define('my-counter-postcss-ie11', MyCounter);
