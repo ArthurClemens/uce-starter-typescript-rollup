@@ -29,6 +29,14 @@ my-counter-postcss {
     font-size: inherit;
   }
 
+  my-counter-postcss:before {
+    content: 'my-counter-postcss';
+    display: block;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 20px 0 10px 0;
+  }
+
 /*
 Custom properties need to be defined at root-level for IE 11.
 For newer browsers these vars may be defined inside the element.
@@ -36,7 +44,7 @@ For newer browsers these vars may be defined inside the element.
 
 :root {
   --button-size: 64px;
-  --button-background-color: seagreen;
+  --button-background-color: DarkGreen;
 }
 
 my-counter-postcss-ie11 {
@@ -64,10 +72,18 @@ my-counter-postcss-ie11 button {
     padding: 0;
     display: inline-block;
     border-radius: 10px;
-    background-color: seagreen;
+    background-color: DarkGreen;
     background-color: var(--button-background-color, grey);
     color: white;
     font-size: inherit;
+  }
+
+my-counter-postcss-ie11:before {
+    content: 'my-counter-postcss-ie11';
+    display: block;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 20px 0 10px 0;
   }
 
 /*# sourceMappingURL=app.css.map */

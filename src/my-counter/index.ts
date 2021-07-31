@@ -67,9 +67,16 @@ export const MyCounter: IMyCounter = {
         padding: 0;
         display: inline-block;
         border-radius: 10px;
-        background-color: seagreen;
+        background-color: LightSeaGreen;
         color: white;
         font-size: inherit;
+      }
+      ${selector}:before {
+        content: 'my-counter';
+        display: block;
+        font-size: 14px;
+        font-weight: normal;
+        margin: 20px 0 10px 0;
       }
     `;
   },
@@ -79,6 +86,14 @@ export const MyCounter: IMyCounter = {
       <span>${this.count}</span>
       <button onclick="${this.inc}">+</button>
     `;
+  },
+  observedAttributes: ['count'],
+  attributeChanged(name, oldValue, newValue) {
+    if (oldValue === null) {
+      console.log('attributeChanged (initial)', name, oldValue, newValue);
+    } else {
+      console.log('attributeChanged (updated)', name, oldValue, newValue);
+    }
   },
   // Added Definition accessors:
   onClick: (evt: Event) => console.log(evt),

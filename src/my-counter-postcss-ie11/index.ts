@@ -8,8 +8,8 @@ import './styles.css';
 
 /**
  * Attributes passed to the component:
- * `<my-counter-postcss></my-counter-postcss>`
- * `<my-counter-postcss count="10"></my-counter-postcss>`
+ * `<my-counter-postcss-ie11></my-counter-postcss-ie11>`
+ * `<my-counter-postcss-ie11 count="10"></my-counter-postcss-ie11>`
  */
 type Props = {
   count?: string;
@@ -52,6 +52,14 @@ export const MyCounter: IMyCounter = {
       <span>${this.count}</span>
       <button onclick="${this.inc}">+</button>
     `;
+  },
+  observedAttributes: ['count'],
+  attributeChanged(name, oldValue, newValue) {
+    if (oldValue === null) {
+      console.log('attributeChanged (initial)', name, oldValue, newValue);
+    } else {
+      console.log('attributeChanged (updated)', name, oldValue, newValue);
+    }
   },
   // Added Definition accessors:
   onClick: (evt: Event) => console.log(evt),

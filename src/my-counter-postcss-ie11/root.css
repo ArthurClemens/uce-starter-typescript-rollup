@@ -5,5 +5,5 @@ For newer browsers these vars may be defined inside the element.
 
 :root {
   --button-size: 64px;
-  --button-background-color: seagreen;
+  --button-background-color: DarkGreen;
 }

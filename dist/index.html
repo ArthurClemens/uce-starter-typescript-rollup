@@ -15,21 +15,26 @@
     <script src="polyfills.js"></script>
   </head>
   <body>
-    <p>With inline CSS</p>
-    <my-counter></my-counter>
+    <h2>With inline CSS</h2>
     <my-counter count="99" class="has-initial-count"></my-counter>
-    <p>With PostCSS</p>
-    <my-counter-postcss></my-counter-postcss>
+    <h2>With PostCSS</h2>
     <my-counter-postcss
       count="99"
       class="has-initial-count"
     ></my-counter-postcss>
-    <p>With PostCSS (IE 11 safe)</p>
-    <my-counter-postcss-ie11></my-counter-postcss-ie11>
+    <h2>With PostCSS (IE 11 safe)</h2>
     <my-counter-postcss-ie11
       count="99"
       class="has-initial-count"
     ></my-counter-postcss-ie11>
     <script src="bundle.js" defer></script>
+    <script defer>
+      const el = document.querySelector(
+        'my-counter-postcss[class=has-initial-count]',
+      );
+      setTimeout(() => {
+        el.setAttribute('count', 100);
+      }, 1000);
+    </script>
   </body>
 </html>

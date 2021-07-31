@@ -8,6 +8,7 @@
   - [Use with SPA libraries](#use-with-spa-libraries)
     - [React](#react)
     - [Mithril](#mithril)
+    - [CSS](#css)
   - [Repo setup](#repo-setup)
   - [Run and build](#run-and-build)
   - [See also](#see-also)
@@ -132,6 +133,15 @@ export const App = {
   },
 };
 ```
+
+### CSS 
+
+`my-counter-postcss` is styled with CSS Variables that are defined in the element's CSS definition. However, this does not work for IE 11, that only accepts CSS Variables that are defined in `:root` - see `my-counter-postcss-ie11`.
+
+If you must support Internet Explorer 11, you have two choices:
+
+1. Always define CSS Variables in `:root` (which is the document root). If you're not careful, variables may be overwritten - alternatively use a single root file for all definitions.
+2. Use PostCSS plugin [postcss-cssnext](https://www.npmjs.com/package/postcss-cssnext) (deprecated) to process all CSS Variables to static values. However, as expected, this does remove the option for theming by simply changing CSS Variable values.
 
 ## Repo setup
 

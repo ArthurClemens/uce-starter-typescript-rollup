@@ -54,6 +54,14 @@ export const MyCounter: IMyCounter = {
       <button onclick="${this.inc}">+</button>
     `;
   },
+  observedAttributes: ['count'],
+  attributeChanged(name, oldValue, newValue) {
+    if (oldValue === null) {
+      console.log('attributeChanged (initial)', name, oldValue, newValue);
+    } else {
+      console.log('attributeChanged (updated)', name, oldValue, newValue);
+    }
+  },
   // Added Definition accessors:
   onClick: (evt: Event) => console.log(evt),
 };

@@ -1,6 +1,7 @@
 import commonjs from '@rollup/plugin-commonjs';
 import autoprefixer from 'autoprefixer';
 import path from 'path';
+// import postcssCssnext from 'postcss-cssnext'; // For IE 11
 import postcssImport from 'postcss-import';
 import postcssMixins from 'postcss-mixins';
 import postcssNested from 'postcss-nested';
@@ -41,7 +42,7 @@ export default {
 
     postcss({
       extract: path.resolve('dist/app.css'),
-      modules: true,
+      modules: false,
       plugins: [
         postcssImport,
         postcssNested,
@@ -50,6 +51,12 @@ export default {
           autoprefixer,
           browsers: ['> 1%', 'last 2 versions', 'IE 11'],
         }),
+        //
+        // Or preprocess all css variables to CSS values for use in IE 11 using postcss-cssnext:
+        //
+        // postcssCssnext({
+        //   browsers: ['> 1%', 'last 2 versions', 'IE 11'],
+        // }),
       ],
       sourceMap: true,
     }),
